@@ -5,17 +5,24 @@ function getComputerChoice() {
     const randomInt = Math.floor(Math.random() * 3);
     let computerChoice;
     if (randomInt === 0) {
-        computerChoice = "Rock";
+        computerChoice = "ROCK";
     } else if (randomInt === 1) {
-        computerChoice = "Paper"; 
+        computerChoice = "PAPER"; 
     } else {
-        computerChoice = "Scissor";
+        computerChoice = "SCISSOR";
     }
-    console.log(computerChoice);
+    return computerChoice;
 }
-getComputerChoice();
 
 // function to get human choice, ensure it is a valid choice
+function getHumanChoice() {
+    let humanChoice;
+    while (!((humanChoice === "ROCK") || (humanChoice === "PAPER") || (humanChoice === "SCISSOR"))) {
+        humanChoice = prompt("Choose between rock, paper, and scissor").toUpperCase();
+        console.log(humanChoice);
+    }
+    return humanChoice;
+}
 
 // declare human and compute scores
 
