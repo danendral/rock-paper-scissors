@@ -19,16 +19,11 @@ function getHumanChoice() {
     let humanChoice;
     while (!((humanChoice === "ROCK") || (humanChoice === "PAPER") || (humanChoice === "SCISSOR"))) {
         humanChoice = prompt("Choose between rock, paper, and scissor").toUpperCase();
-        console.log(humanChoice);
     }
     return humanChoice;
 }
 
-// initialise human and compute scores
-let humanScore = 0;
-let computerScore = 0; 
-
-// function playround to play 1 round, take parameters human and computer choice
+// function to play 1 round, take parameters human and computer choice
 // assess the winner and update score
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === "ROCK") {
@@ -56,9 +51,24 @@ function playRound(humanChoice, computerChoice) {
         }
     }
 }
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+// initialise human and compute scores
+let humanScore = 0;
+let computerScore = 0; 
 
 // function playgame, play 5 rounds
+function playGame() {
+    for (let i=0; i<5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+
+        playRound(humanSelection, computerSelection);    
+    }
+
+    console.log("Final Score:");
+    console.log("Computer Score", computerScore);
+    console.log("Human Score", humanScore);
+
+}
+
+playGame();
