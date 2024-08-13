@@ -1,5 +1,3 @@
-console.log("Hello World!")
-
 // function to get computer choice randomly
 function getComputerChoice() {
     const randomInt = Math.floor(Math.random() * 3);
@@ -47,28 +45,71 @@ function playRound(humanChoice, computerChoice) {
             computerScore += 1;
         }
         else if (computerChoice === "PAPER") {
-            humanChoice += 1;
+            humanScore += 1;
         }
     }
+    console.log("");
+    console.log("Human Choice:", humanChoice);
+    console.log("Computer Choice:", computerChoice);
+    domHumanChoice.textContent = "Human Seleceted: " + humanChoice;
+    domComputerChoice.textContent = "Computer Selected: " + computerChoice;
+    chosenItem.appendChild(domHumanChoice);
+    chosenItem.appendChild(domComputerChoice);
+
+    domHumanScore.textContent = humanScore;
+    domComputerScore.textContent = computerScore;
 }
 
-// initialise human and compute scores
+
+// Initialise human and compute scores
 let humanScore = 0;
 let computerScore = 0; 
 
+
+// Get human and computer score
+const domHumanScore = document.querySelector("#humanScore");
+const domComputerScore = document.querySelector("#computerScore");
+
+const body = document.querySelector("body");
+const winner = document.createElement("div");
+
+const chosenItem = document.querySelector(".chosenItem");
+const domHumanChoice = document.createElement("div");
+const domComputerChoice = document.createElement("div");
+
+
+// Add event listener to the buttons
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorButton = document.querySelector("#scissor");
+rockButton.addEventListener("click", () => {
+    const humanSelection = "ROCK";
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    playGame();
+});
+paperButton.addEventListener("click", () => {
+    const humanSelection = "PAPER";
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    playGame();
+});
+scissorButton.addEventListener("click", () => {
+    const humanSelection = "SCISSOR";
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+    playGame();
+});
+
+
 // function playgame, play 5 rounds
 function playGame() {
-    for (let i=0; i<5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);    
+    if (humanScore === 5){
+        winner.textContent = "Human Win!";
+        body.appendChild(winner);
+    } else if (computerScore === 5) {
+        console.log("Computer Win!")
+        winner.textContent = "Human Win!";
+        body.appendChild(winner);
     }
-
-    console.log("Final Score:");
-    console.log("Computer Score", computerScore);
-    console.log("Human Score", humanScore);
-
 }
-
-playGame();
